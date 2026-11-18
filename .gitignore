@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+*/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python
+__pycache__/
+*/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.venv
+
+# Environment files (keep example configs)
+.env
+.env.local
+.env.*.local
+!.env.example
+!*/.env.example
+
+# Build & distribution outputs
+dist/
+dist-ssr/
+build/
+*.egg-info/
+
+# Uploaded media (keep folder structure)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# System & IDE files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

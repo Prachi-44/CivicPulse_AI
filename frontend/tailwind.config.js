@@ -1,0 +1,125 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode: 'class',
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        // CivicPulse CyberNavy Design System
+        surface: '#0d1322',
+        'surface-dim': '#0d1322',
+        'surface-bright': '#33394a',
+        'surface-container-lowest': '#080e1d',
+        'surface-container-low': '#151b2b',
+        'surface-container': '#191f2f',
+        'surface-container-high': '#242a3a',
+        'surface-container-highest': '#2f3445',
+        'on-surface': '#dde2f8',
+        'on-surface-variant': '#bcc9cd',
+        'inverse-surface': '#dde2f8',
+        'inverse-on-surface': '#2a3040',
+        outline: '#869397',
+        'outline-variant': '#3d494c',
+        'surface-tint': '#4cd7f6',
+        primary: '#4cd7f6',
+        'on-primary': '#003640',
+        'primary-container': '#06b6d4',
+        'on-primary-container': '#00424f',
+        'inverse-primary': '#00687a',
+        'primary-fixed': '#acedff',
+        'primary-fixed-dim': '#4cd7f6',
+        secondary: '#5de6ff',
+        'on-secondary': '#00363e',
+        'secondary-container': '#00cbe6',
+        'secondary-fixed': '#a2eeff',
+        'secondary-fixed-dim': '#2fd9f4',
+        tertiary: '#ffb95f',
+        'on-tertiary': '#472a00',
+        'tertiary-container': '#e79400',
+        'tertiary-fixed': '#ffddb8',
+        'tertiary-fixed-dim': '#ffb95f',
+        error: '#ffb4ab',
+        'on-error': '#690005',
+        'error-container': '#93000a',
+        'on-error-container': '#ffdad6',
+        background: '#0d1322',
+        'on-background': '#dde2f8',
+        'surface-variant': '#2f3445',
+      },
+      fontFamily: {
+        'display-lg': ['Space Grotesk', 'sans-serif'],
+        'headline-lg': ['Space Grotesk', 'sans-serif'],
+        'headline-md': ['Space Grotesk', 'sans-serif'],
+        'headline-sm': ['Space Grotesk', 'sans-serif'],
+        'body-lg': ['Plus Jakarta Sans', 'sans-serif'],
+        'body-md': ['Plus Jakarta Sans', 'sans-serif'],
+        'body-sm': ['Plus Jakarta Sans', 'sans-serif'],
+        'label-lg': ['JetBrains Mono', 'monospace'],
+        'label-md': ['JetBrains Mono', 'monospace'],
+        'label-sm': ['JetBrains Mono', 'monospace'],
+        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['Plus Jakarta Sans', 'sans-serif'],
+        display: ['Space Grotesk', 'sans-serif'],
+      },
+      fontSize: {
+        'display-lg': ['48px', { lineHeight: '56px', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'display-lg-mobile': ['32px', { lineHeight: '40px', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.015em', fontWeight: '600' }],
+        'headline-md': ['24px', { lineHeight: '32px', letterSpacing: '-0.01em', fontWeight: '600' }],
+        'headline-sm': ['18px', { lineHeight: '24px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+        'body-sm': ['12px', { lineHeight: '16px', fontWeight: '400' }],
+        'label-lg': ['13px', { lineHeight: '18px', letterSpacing: '0.02em', fontWeight: '500' }],
+        'label-md': ['11px', { lineHeight: '16px', letterSpacing: '0.05em', fontWeight: '500' }],
+        'label-sm': ['10px', { lineHeight: '14px', letterSpacing: '0.08em', fontWeight: '500' }],
+      },
+      borderRadius: {
+        DEFAULT: '0.5rem',
+        sm: '0.25rem',
+        md: '0.75rem',
+        lg: '1rem',
+        xl: '1.5rem',
+        full: '9999px',
+      },
+      spacing: {
+        'margin': '1rem',
+        'margin-tablet': '1.5rem',
+        'margin-desktop': '2rem',
+        'gutter': '1rem',
+        'gutter-desktop': '1.5rem',
+        'space-xs': '0.25rem',
+        'space-sm': '0.5rem',
+        'space-md': '1rem',
+        'space-lg': '1.5rem',
+        'space-xl': '2rem',
+      },
+      keyframes: {
+        ping: {
+          '75%, 100%': { transform: 'scale(2)', opacity: '0' }
+        },
+        pulse: {
+          '50%': { opacity: '0.5' }
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        fadeIn: {
+          from: { opacity: '0', transform: 'translateY(8px)' },
+          to: { opacity: '1', transform: 'translateY(0)' }
+        },
+        slideIn: {
+          from: { transform: 'translateX(100%)' },
+          to: { transform: 'translateX(0)' }
+        }
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.3s ease-out',
+        'slide-in': 'slideIn 0.3s ease-out',
+        shimmer: 'shimmer 2s linear infinite',
+      }
+    },
+  },
+  plugins: [],
+};

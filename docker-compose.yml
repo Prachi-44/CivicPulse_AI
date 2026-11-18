@@ -1,0 +1,82 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgis/postgis:15-3.3
+    container_name: civicpulse_postgres
+    environment:
+      POSTGRES_DB: civicpulse
+      POSTGRES_USER: civicpulse_user
+      POSTGRES_PASSWORD: civicpulse_pass_2025
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/01_init.sql
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U civicpulse_user -d civicpulse"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: civicpulse_backend
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://civicpulse_user:civicpulse_pass_2025@postgres:5432/civicpulse
+      JWT_SECRET: civicpulse_jwt_secret_2025_vit_pune
+      JWT_EXPIRES_IN: 7d
+      AI_SERVICE_URL: http://ai-service:5001
+      PORT: 4000
+      CORS_ORIGIN: http://localhost:5173
+      UPLOAD_DIR: /app/uploads
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+      - uploads_data:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: npm run dev
+
+  ai-service:
+    build:
+      context: ./ai-service
+      dockerfile: Dockerfile
+    container_name: civicpulse_ai
+    environment:
+      DATABASE_URL: postgresql://civicpulse_user:civicpulse_pass_2025@postgres:5432/civicpulse
+      PORT: 5001
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./ai-service:/app
+      - uploads_data:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: civicpulse_frontend
+    environment:
+      VITE_API_URL: http://localhost:4000/api
+      VITE_AI_URL: http://localhost:5001
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev -- --host 0.0.0.0
+
+volumes:
+  postgres_data:
+  uploads_data:
